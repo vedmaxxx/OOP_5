@@ -145,7 +145,7 @@
     <ClCompile Include="isAClass.cpp" />
     <ClCompile Include="dynamiccast.cpp" />
     <ClCompile Include="functions.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="smart_pointers.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

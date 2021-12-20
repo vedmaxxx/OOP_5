@@ -6,8 +6,7 @@ void override_methods();
 void isAClass();
 void dynamiccast();
 void funcs();
-
-void foo();
+void pointers();
 
 int main()
 {
@@ -17,5 +16,6 @@ int main()
     //isAClass();
     //dynamiccast();
     //funcs();
-    foo();
+
+    pointers();
 }
