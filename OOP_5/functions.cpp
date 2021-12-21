@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+
+//тест кодировки
 class Base {
 protected:
 	int value = -1;
