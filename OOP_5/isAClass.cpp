@@ -6,8 +6,6 @@ using namespace std;
 //	проверка на принадлежность некоторому классу
 
 
-/////////////////////////////////////////////////////////////////
-//
 //	отличие classname() от isA(classname):
 //
 //	classname() просто возвращает имя класса, и проверку
@@ -64,7 +62,11 @@ public:
 
 void isAClass()
 {
+	printf("isAClass.cpp\n");
+	printf("________________________________________________________________________________________________\n");
+	printf("Приведение типов через dynamic_cast и проверка на класс\n");
 	Source* base = new Deriv;
+	//приводим указатель base к дочернему классу Deriv*
 	Deriv* der = dynamic_cast<Deriv*>(base);
 
 	//если объект класса Deriv
@@ -72,6 +74,7 @@ void isAClass()
 		//вызываем метод, который есть только у Deriv
 		der->printDeriv();
 	}
+	else printf("Это не Deriv\n");
 	delete base;
 
 	Source* base1 = new Mesh;
@@ -82,6 +85,7 @@ void isAClass()
 	if (der1) {
 		der->printDeriv();
 	}
+	else printf("Это не Deriv\n");
 	delete base1;
 	
 	//вывод: проверка объекта на принадлежность классу нужна, чтобы мы могли
@@ -89,11 +93,14 @@ void isAClass()
 	//дочернем классе
 
 	//опасное приведение типов и предварительная проверка типа с помощью isA
+	printf("Опасное приведение типа с помощью isA()\n");
 	{
 		Source* base = new Deriv;
 		if (base->isA("Deriv")) {
 			Deriv* der = (Deriv*)base;
 			der->printDeriv();
 		}
+		else printf("Это не Deriv\n");
 	}
+	printf("________________________________________________________________________________________________\n");
 }

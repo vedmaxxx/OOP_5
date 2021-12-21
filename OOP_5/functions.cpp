@@ -2,6 +2,8 @@
 using namespace std;
 
 class Base {
+protected:
+	int value = -1;
 public:
 	Base() {
 		printf("\t\tBase() %p\n", this);
@@ -11,6 +13,13 @@ public:
 	}
 	Base(Base &obj) {
 		printf("\t\tBase(Base &obj) %p\n", this);
+	}
+
+	void set(int _value) {
+		value = _value;
+	}
+	int get() {
+		return value;
 	}
 
 	~Base() {
@@ -53,22 +62,26 @@ void func3(Base& obj) {
 
 Base func1() {  
 	//возвращает здесь созданный obj
+	printf("\tBase func1()\n");
 	Base obj;
 	return obj;
 }
 Base* func2() {  
-	//
-	Base* ptr = new Base;
-	return ptr;
+	//возвращаем адрес на выделенную память
+	printf("\tBase* func2()\n");
+	return new Base;
 }
-Base& func3() { 
-	//
-	Base obj;
-	return obj;
+Base& func3(Base* obj) { 
+	//передается ссылка на содержимое obj-а
+	//при этом адрес приемника не изменится
+	printf("\tBase& func3()\n");
+	return *obj;
 }
 
 
 void funcs() {
+	printf("functions.cpp\n");
+	printf("________________________________________________________________________________________________\n");
 	printf("Вызов функций\n");
 	printf("{\n");
 	{
@@ -88,7 +101,7 @@ void funcs() {
 	}
 	printf("}\n\n\n");
 
-	printf("Работа с func1, func2, func3\n");
+	printf("Работа с возвратом из функций\n");
 	printf("{\n");
 	{
 		printf("func1()\n");
@@ -106,9 +119,24 @@ void funcs() {
 		ptr = func2();
 		printf("\t\tptr: %p\n", ptr);
 
+
 		printf("func3()\n");
-		*ptr = func3();
+
+		Base obj1;
+		obj1.set(10);
+		Base* ptr1 = &obj1;
+		printf("\t\tptr1: %p\n", ptr1);
+		printf("\t\tvalue: %d\n", ptr1->get());
+
 		printf("\t\tptr: %p\n", ptr);
+		printf("\t\tvalue: %d\n", ptr->get());
+		*ptr = func3(ptr1);
+
+		printf("\t\tptr: %p\n", ptr);
+		printf("\t\tvalue: %d\n", ptr->get());
+
 	}
 	printf("}\n\n\n");
+	printf("________________________________________________________________________________________________\n");
+
 }

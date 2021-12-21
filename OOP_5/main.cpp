@@ -15,7 +15,6 @@ int main()
     //override_methods();
     //isAClass();
     //dynamiccast();
-    //funcs();
-
-    pointers();
+    funcs();
+    //pointers();
 }

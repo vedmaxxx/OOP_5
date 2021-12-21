@@ -6,7 +6,7 @@
 class Source {
 public:
     virtual void print() { 
-        printf("Base print\n");
+        printf("Source print\n");
     }
 };
 
@@ -29,18 +29,30 @@ public:
 
 void override_methods()
 {
+    printf("override_methods.cpp\n");
+    printf("________________________________________________________________________________________________\n");
+    printf("Создаем объект Source t\n");
     Source t;
+    printf("вызываем t.print()\n");
     t.print();
 
     //Deriv1 просто унаследует метод print() у класса-родителя Base
+    printf("Создаем объект Deriv1 d1\n");
     Deriv1 d1;
+    printf("вызываем d1.print()\n");
     d1.print();
 
-    //Deriv2 реализует по-своему метод print(
+    //Deriv2 реализует по-своему метод print()
+    printf("Создаем объект Deriv2 d2\n");
     Deriv2 d2;
+    printf("вызываем d2.print()\n");
     d2.print();
 
     //вызовется реализация print() у класса Deriv3, поскольку присутствует override
+    printf("Создаем объект Deriv3 d3\n");
     Deriv3 d3;
+    printf("вызываем d3.print()\n");
     d3.print();
+    printf("________________________________________________________________________________________________\n");
+
 }
