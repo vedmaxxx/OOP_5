@@ -22,7 +22,7 @@ void pointers() {
 		//unique_ptr удалится сам, когда выйдет из области видимости
 		unique_ptr<Item> item1 = make_unique<Item>();
 
-		//item2=nullptr
+		//item2 = nullptr
 		unique_ptr<Item> item2;
 
 		cout << "item1: " << (static_cast<bool>(item1) ? "не nullptr\n" : "nullptr\n");
@@ -59,4 +59,6 @@ void pointers() {
 		printf("уничтожается указатель ptr1 : %p\n", &ptr1);
 	}
 	printf("________________________________________________________________________________________________\n");
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
 }

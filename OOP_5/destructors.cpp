@@ -4,9 +4,11 @@
 //	виртуальные деструкторы
 
 class NotVirtBase {
+private:
+	int value = 255;
 public:
 	~NotVirtBase() {
-		printf("~NotVirtBase()\n");
+		printf("\t~NotVirtBase()\n");
 	}
 };
 
@@ -18,7 +20,7 @@ public:
 		array = new int[size];
 	}
 	~NotVirtArr() {
-		printf("~NotVirtArr\n");
+		printf("\t~NotVirtArr\n");
 		delete[] array;
 	}
 };
@@ -26,7 +28,7 @@ public:
 class VirtBase {
 public:
 	virtual ~VirtBase() {
-		printf("~VirtBase()\n");
+		printf("\t~VirtBase()\n");
 	}
 };
 
@@ -38,7 +40,7 @@ public:
 		array = new int[size];
 	}
 	~VirtArr() {
-		printf("~VirtArr\n");
+		printf("\t~VirtArr\n");
 		delete[] array;
 	}
 };
@@ -50,13 +52,18 @@ void destructors()
 	printf("NotVirtBase - родительский класс без вирт. деструктора\n");
 	printf("NotVirtArr - дочерний класс, у которого в деструкторе удал€етс€ динамически выделенный массив\n");
 	{
-		NotVirtArr* arr = new NotVirtArr(10);	//создали массив на дес€ть чисел
-		NotVirtBase* parent = arr;		//”казатель parent хранит адрес объекта, лежащего по адресу указател€ arr
-		delete parent;				//поскольку деструктор parent не виртуальный, вызоветс€ ~NotVirtBase()
-									//а массив останетс€ висеть в пам€ти - утечка пам€ти
+		NotVirtArr* arr = new NotVirtArr(10);	
+		NotVirtBase* base = new NotVirtArr(30);			
+		printf("ƒеструктор переменной NotVirtArr* arr: \n");
+		delete arr;
+
+		//вызываетс€ деструктор –ќƒ»“≈Ћ№— ќ√ќ класса, который не может удалить пам€ть,
+		//выделенную в конструкторе NotVirtArr()
+		printf("ƒеструктор переменной NotVirtBase* base: \n");	
+		delete base;
 	}
 
-	printf("VirtBase - родительский класс с вирт. деструктором\n");
+	printf("\nVirtBase - родительский класс с вирт. деструктором\n");
 	printf("VirtArr - дочерний класс, у которого в деструкторе удал€етс€ динамически выделенный массив\n");
 	{
 		VirtArr* arr = new VirtArr(10); 
@@ -67,4 +74,6 @@ void destructors()
 									//и сначала удал€тс€ компоненты VirtArr, затем VirtBase
 	}
 	printf("________________________________________________________________________________________________\n");
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
 }

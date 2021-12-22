@@ -28,8 +28,6 @@ public:
 		this->value = ch->value;
 		this->code = ch->code;
 	}
-
-	
 };
 
 void dynamiccast()
@@ -43,34 +41,34 @@ void dynamiccast()
 	//в данном случае указатель родительского класса хранит в себе адрес на объект дочернего класса
 	//и не может обратиться к методам дочернего класса, поскольку они объявлены ТОЛЬКО в дочернем классе
 	//и не наследуются.
+
+	//опасное приведение типов(c-style)
 	{
-		Parent* p = new Child(10, 'B');
-		delete p;
+		printf("Опасное приведение типов(c-style)\n");
+		//не можем вызвать метод getCode()
+		Parent* ptr = new Child(10, 'B');
+
+		//если ptr привести к типу Child*, тогда мы сможем вызвать getCode()
+		Child* ptr1 = (Child*)ptr;
+		printf("Символ: %c\n", ptr1->getCode());
+		delete ptr;
 	}
 	//безопасное приведение типов(dynamic_cast)
 	{
-		Parent* p = new Child(10, 'B');
-		Child* ch = dynamic_cast<Child*> (p);
+		printf("Безопасное приведение типов(dynamic_cast)\n");
+		Parent* ptr = new Child(10, 'B');
+		Child* ptr1 = dynamic_cast<Child*> (ptr);
 
 		char symbol = '&';
 		//dynamic_cast может вернуть nullptr в случае невозможной конвертации,
 		//поэтому важно обрабатывать nullptr отдельно
-		if (ch != nullptr) {
-			symbol = ch->getCode();
+		if (ptr1 != nullptr) {
+			symbol = ptr1->getCode();
 		}
 		printf("Символ: %c\n", symbol);
 
-		delete p;
-	}
-	{
-		//указатель класса Parent, хранящий адрес на объект класса Child
-		Parent* p = new Child(200, 'A');
-		
-		//указатель класса Child, хранящий адрес на объект класса Child, копирующий данные
-		//указателя класса Parent, приведенного к типу указателя класса Child
-		Child* ch = new Child((Child*)p);
-		ch->getCode();
+		delete ptr;
 	}
 	printf("________________________________________________________________________________________________\n");
-
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 }

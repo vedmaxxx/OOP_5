@@ -1,20 +1,20 @@
 #include <iostream>
 using namespace std;
 
-void destructors();
 void override_methods();
-void isAClass();
+void destructors();
 void dynamiccast();
+void isAClass();
 void funcs();
 void pointers();
 
 int main()
 {
     setlocale(LC_ALL, "rus");
-    //destructors();
-    //override_methods();
-    //isAClass();
-    //dynamiccast();
+    override_methods();
+    destructors();
+    dynamiccast();
+    isAClass();
     funcs();
-    //pointers();
+    pointers();
 }

@@ -74,7 +74,7 @@ void isAClass()
 		//вызываем метод, который есть только у Deriv
 		der->printDeriv();
 	}
-	else printf("Это не Deriv\n");
+	else printf("Это не Deriv, а nullptr\n");
 	delete base;
 
 	Source* base1 = new Mesh;
@@ -83,9 +83,9 @@ void isAClass()
 	//результат - nullptr
 	//если не nullptr - печатаем
 	if (der1) {
-		der->printDeriv();
+		der1->printDeriv();
 	}
-	else printf("Это не Deriv\n");
+	else printf("Это не Deriv, а nullptr\n");
 	delete base1;
 	
 	//вывод: проверка объекта на принадлежность классу нужна, чтобы мы могли
@@ -100,7 +100,9 @@ void isAClass()
 			Deriv* der = (Deriv*)base;
 			der->printDeriv();
 		}
-		else printf("Это не Deriv\n");
+		else printf("Это не Deriv, а nullptr\n");
 	}
 	printf("________________________________________________________________________________________________\n");
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
 }

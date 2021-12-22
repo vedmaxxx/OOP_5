@@ -87,8 +87,13 @@ void funcs() {
 	printf("Вызов функций\n");
 	printf("{\n");
 	{
+		printf("\tfunc1()\n");
 		func1(new Base);
+
+		printf("\tfunc2()\n");
 		func2(new Base);
+
+		printf("\tfunc3()\n");
 		func3(*(new Base));
 	}
 	printf("}\n\n\n");
@@ -97,8 +102,11 @@ void funcs() {
 	printf("{\n");
 
 	{
+		printf("\tfunc1()\n");
 		func1(new Desc);
+		printf("\tfunc2()\n");
 		func2(new Desc);
+		printf("\tfunc3()\n");
 		func3(*(new Desc));
 	}
 	printf("}\n\n\n");
@@ -106,23 +114,26 @@ void funcs() {
 	printf("Работа с возвратом из функций\n");
 	printf("{\n");
 	{
-		printf("func1()\n");
+		printf("\tfunc1()\n");
 
 		Base obj;
+		obj.set(3);
 		Base* ptr = &obj;
 		printf("\t\tptr = &obj: %p\n", ptr);
+		printf("\t\tobj value: %d\n", obj.get());
 		//меняем содержимое по тому же адресу
 		*ptr = func1();
 		printf("\t\tptr: %p\n", ptr);
+		printf("\t\tobj value: %d\n", obj.get());
 
 		
-		printf("func2()\n");
+		printf("\tfunc2()\n");
 		//хранит адрес переменной, созданной в func2
 		ptr = func2();
 		printf("\t\tptr: %p\n", ptr);
 
 
-		printf("func3()\n");
+		printf("\tfunc3()\n");
 
 		Base obj1;
 		obj1.set(10);
@@ -140,5 +151,6 @@ void funcs() {
 	}
 	printf("}\n\n\n");
 	printf("________________________________________________________________________________________________\n");
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
 }
